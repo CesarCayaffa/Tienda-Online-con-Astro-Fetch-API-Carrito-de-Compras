@@ -9,9 +9,9 @@ const products = await res.json();
 <Layout>
 	  <h1>Products</h1>
   <div class="grid grid-cols-3 gap-4">
-	{products.map((product: { id: number; title: string; price: number; category: string }) => (
+	{products.map((product: { id: number; title: string; price: number; category: string, image: string }) => (
 	  <div class="bg-white p-4 rounded-lg shadow-lg">
-		<img class="h-72 w-auto" src={`https://fakestoreapi.com/img/81fPKd-2AYL._AC_SL1500_.jpg`} alt={product.title} />
+		<img class="h-72 w-auto" src={product.image} alt={product.title} />
 		<h2>{product.title}</h2>
 
 		<p>{product.category}</p>
