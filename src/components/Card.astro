@@ -16,6 +16,9 @@ const { product } = Astro.props as { product: Product };
       <p class="italic">{product.category}</p>
       <p class="font-bold text-lg text-green-600">${product.price}</p>
     </div>
+    <p>
+      {Array.from({ length: Math.round(product.rating.rate) }, () => '⭐').join('')} 
+    </p>
   </div>
   <button class="mt-4 bg-blue-500 text-white py-2 px-4 rounded-lg hover:bg-blue-600 transition duration-300">
     Add to Cart
