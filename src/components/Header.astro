@@ -1,6 +1,7 @@
 ---
 import HandbagSvg from "../assets/handbag.svg";
 import CartSVG from "../assets/cart.svg";
+import CartIndicator from "./CartIndicator.jsx";
 ---
 
 <div class="max-w-5xl mx-auto p-4 flex justify-between items-center">
@@ -19,8 +20,10 @@ import CartSVG from "../assets/cart.svg";
     <span
       class="bg-blue-500 text-white py-2 px-4 rounded-lg flex items-center gap-2"
     >
-      <span>0</span>
+    <CartIndicator client:load />
+
       <CartSVG class="w-6 h-6" />
-    </span>
-  </div>
+      </span>
+      
+    </div>
 </div>
