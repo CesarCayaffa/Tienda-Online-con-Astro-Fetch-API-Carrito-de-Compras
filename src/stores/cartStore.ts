@@ -2,7 +2,7 @@ import { create } from "zustand";
 
 interface CartItem {
     id: number;
-    tittle: string;
+    title: string;
     price: number;
     quantity: number;
 }
@@ -18,23 +18,21 @@ export const useCartStore = create<CartStore>((set) => ({
     cart: [],
     addToCart: (item) =>
         set((state) => {
-          const existingItem = state.cart.find((cartItem) => cartItem.id === item.id);
-          if (existingItem) {
-            // Incrementar la cantidad si el producto ya está en el carrito
-            return {
-              cart: state.cart.map((cartItem) =>
-                cartItem.id === item.id
-                  ? { ...cartItem, quantity: cartItem.quantity + 1 }
-                  : cartItem
-              ),
-            };
-          }
-          // Agregar un nuevo producto al carrito
-          return { cart: [...state.cart, { ...item, quantity: 1 }] };
+            const existingItem = state.cart.find((cartItem) => cartItem.id === item.id);
+            if (existingItem) {
+                return {
+                    cart: state.cart.map((cartItem) =>
+                        cartItem.id === item.id
+                            ? { ...cartItem, quantity: cartItem.quantity + 1 }
+                            : cartItem
+                    ),
+                };
+            }
+            return { cart: [...state.cart, { ...item, quantity: 1 }] };
         }),
-      removeFromCart: (id) =>
+    removeFromCart: (id) =>
         set((state) => ({
-          cart: state.cart.filter((cartItem) => cartItem.id !== id),
+            cart: state.cart.filter((cartItem) => cartItem.id !== id),
         })),
-      clearCart: () => set({ cart: [] }),
-    }));
+    clearCart: () => set({ cart: [] }),
+}));
