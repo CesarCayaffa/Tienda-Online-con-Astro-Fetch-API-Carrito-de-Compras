@@ -1,4 +1,5 @@
 import { create } from "zustand";
+import { persist } from "zustand/middleware";
 
 interface CartItem {
     id: number;
@@ -14,25 +15,34 @@ interface CartStore {
     clearCart: () => void;
 }
 
-export const useCartStore = create<CartStore>((set) => ({
-    cart: [],
-    addToCart: (item) =>
-        set((state) => {
-            const existingItem = state.cart.find((cartItem) => cartItem.id === item.id);
-            if (existingItem) {
-                return {
-                    cart: state.cart.map((cartItem) =>
-                        cartItem.id === item.id
-                            ? { ...cartItem, quantity: cartItem.quantity + 1 }
-                            : cartItem
-                    ),
-                };
-            }
-            return { cart: [...state.cart, { ...item, quantity: 1 }] };
+export const useCartStore = create(
+    persist<CartStore>(
+        (set) => ({
+            cart: [],
+            addToCart: (item) =>
+                set((state) => {
+                    const existingItem = state.cart.find(
+                        (cartItem) => cartItem.id === item.id
+                    );
+                    if (existingItem) {
+                        return {
+                            cart: state.cart.map((cartItem) =>
+                                cartItem.id === item.id
+                                    ? { ...cartItem, quantity: cartItem.quantity + 1 }
+                                    : cartItem
+                            ),
+                        };
+                    }
+                    return { cart: [...state.cart, { ...item, quantity: 1 }] };
+                }),
+            removeFromCart: (id) =>
+                set((state) => ({
+                    cart: state.cart.filter((cartItem) => cartItem.id !== id),
+                })),
+            clearCart: () => set({ cart: [] }),
         }),
-    removeFromCart: (id) =>
-        set((state) => ({
-            cart: state.cart.filter((cartItem) => cartItem.id !== id),
-        })),
-    clearCart: () => set({ cart: [] }),
-}));
+        {
+            name: "cart-storage", // Nombre de la clave en localStorage
+        }
+    )
+);
