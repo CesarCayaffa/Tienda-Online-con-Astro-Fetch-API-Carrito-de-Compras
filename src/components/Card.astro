@@ -30,10 +30,18 @@ const { product } = Astro.props as { product: Product };
       ${product.price}
     </p>
   </div>
+
+  <!-- Contenedor de descripción y botón -->
   <div
-    class="absolute inset-0 bg-white bg-opacity-90 p-4 text-gray-700 opacity-0 hover:opacity-100 transition-opacity duration-300 ease-in-out flex items-center justify-center text-center"
+    class="absolute inset-0 bg-white bg-opacity-90 p-4 text-gray-700 opacity-0 hover:opacity-100 transition-opacity duration-300 ease-in-out flex flex-col items-center justify-between text-center rounded-xl"
   >
-    <p itemprop="description">{product.description}</p>
+    <p class="mt-4" itemprop="description">{product.description}</p>
+    <button
+      class="bg-blue-500 text-white py-2 px-4 rounded-lg flex items-center justify-center gap-2 hover:bg-blue-600 transition duration-300 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-offset-2"
+    >
+      <span>Agregar al carrito</span>
+      <CartSVG class="w-6 h-6" />
+    </button>
   </div>
   <p
     class="mt-2 text-yellow-500"
@@ -50,11 +58,4 @@ const { product } = Astro.props as { product: Product };
     }
   </p>
   <p itemprop="reviewCount">{product.rating.count} opiniones</p>
-  <!-- Botón que aparece al hacer hover -->
-  <button
-    class="mt-4 bg-blue-500 text-white py-2 px-4 rounded-lg flex items-center justify-center gap-2 opacity-0 hover:opacity-100 transition-opacity duration-300 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-offset-2"
-  >
-    <span>Agregar al carrito</span>
-    <CartSVG class="w-6 h-6" />
-  </button>
 </article>
