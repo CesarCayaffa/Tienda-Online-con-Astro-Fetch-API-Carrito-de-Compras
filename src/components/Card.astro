@@ -37,7 +37,7 @@ const { product } = Astro.props as { product: Product };
   <div
     class="absolute inset-0 bg-white bg-opacity-90 p-4 text-gray-700 opacity-0 hover:opacity-100 transition-opacity duration-300 ease-in-out flex flex-col items-center justify-between text-center rounded-xl"
   >
-    <p class="mt-4 max-h-60" itemprop="description">{product.description}</p>
+    <p class="mt-4 max-h-60 line-clamp-6" itemprop="description">{product.description}</p>
     <AddToCartButton client:load product={product} />
   </div>
   <p
