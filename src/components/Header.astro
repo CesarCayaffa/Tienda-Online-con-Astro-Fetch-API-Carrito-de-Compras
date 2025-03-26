@@ -23,11 +23,11 @@ const currentPath = Astro.url.pathname;
       <div class="flex justify-end gap-4">
         <a
           href="/cart"
-          class="bg-blue-500 text-white py-2 px-4 rounded-lg flex items-center gap-2"
+          class="bg-black text-white font-bold py-2 px-4 rounded-lg flex items-center gap-2 hover:scale-110 transition duration-300"
         >
           <CartIndicator client:load />
 
-          <CartSVG class="w-6 h-6" />
+          <CartSVG class="w-6 h-6 invert" />
         </a>
       </div>
     )

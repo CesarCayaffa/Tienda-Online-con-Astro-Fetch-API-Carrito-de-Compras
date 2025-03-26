@@ -16,8 +16,8 @@ const AddToCartButton = ({ product }) => {
   return (
     <button
       onClick={handleAddToCart}
-      className="bg-blue-500 text-white py-2 px-4 rounded-lg flex items-center justify-center gap-2 hover:bg-blue-600 transition duration-300 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-offset-2"
-    >
+      className="bg-black text-white py-2 px-4 rounded-lg flex items-center justify-center gap-2 hover:scale-110 transition duration-300"
+      >
       <span>Agregar al carrito</span>
     </button>
   );
